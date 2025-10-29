@@ -24,10 +24,9 @@ wheels/
 .venv/
 venv/
 ENV/
+# Note: env/requirements.txt should be tracked, so env/ is not ignored
 env.bak/
 venv.bak/
-# But keep requirements.txt
-!env/requirements.txt
 
 # Jupyter Notebook
 .ipynb_checkpoints
