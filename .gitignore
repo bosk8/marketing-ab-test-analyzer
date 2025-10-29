@@ -24,9 +24,10 @@ wheels/
 .venv/
 venv/
 ENV/
-env/
 env.bak/
 venv.bak/
+# But keep requirements.txt
+!env/requirements.txt
 
 # Jupyter Notebook
 .ipynb_checkpoints
