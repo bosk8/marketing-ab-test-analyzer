@@ -140,6 +140,23 @@ class TestDataLoading(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             load_aggregated_data("nonexistent_file.csv")
 
+    def test_load_row_level_data_invalid_converted_value(self):
+        """Test error handling for invalid 'converted' values."""
+        import tempfile
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
+            f.write("user_id,group,converted\n")
+            f.write("u1,A,0\n")
+            f.write("u2,A,1\n")
+            f.write("u3,B,2\n")  # Invalid value
+            temp_path = f.name
+
+        try:
+            with self.assertRaises(ValueError):
+                load_row_level_data(temp_path)
+        finally:
+            os.unlink(temp_path)
+
 
 if __name__ == '__main__':
     unittest.main()
